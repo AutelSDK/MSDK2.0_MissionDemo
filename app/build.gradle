@@ -1,0 +1,81 @@
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdkVersion rootProject.ext.versions.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.versions.minSdk
+        targetSdkVersion rootProject.ext.versions.targetSdk
+        versionCode rootProject.ext.versions.versionCode
+        versionName rootProject.ext.versions.versionName
+
+
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+
+
+        applicationId "com.autel.mission.demo"
+    }
+
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.debug
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.versions.javaCompatibility
+        targetCompatibility rootProject.ext.versions.javaCompatibility
+        encoding "UTF-8"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+}
+
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation fileTree("libs\\expose-release.aar")
+    implementation 'com.google.protobuf:protobuf-java:3.21.5'
+
+
+    implementation rootProject.ext.deps.external.android.core_ktx
+    implementation rootProject.ext.deps.external.android.design
+    implementation 'com.tencent:mmkv:1.2.13'
+    implementation 'com.github.Petterpx:FloatingX:1.0.4'
+    implementation rootProject.ext.deps.external.kotlin.coroutines
+    implementation rootProject.ext.deps.external.kotlin.coroutinesandroid
+
+    implementation rootProject.ext.deps.external.android.core_ktx
+    implementation rootProject.ext.deps.external.android.appcompat
+    implementation rootProject.ext.deps.external.android.design
+    implementation rootProject.ext.deps.external.android.navi_fragment_ktx
+    implementation rootProject.ext.deps.external.android.fragment_ktx
+    implementation rootProject.ext.deps.external.protobuf_java
+    implementation rootProject.ext.deps.external.gson
+    implementation rootProject.ext.deps.external.okhttp.core
+}
