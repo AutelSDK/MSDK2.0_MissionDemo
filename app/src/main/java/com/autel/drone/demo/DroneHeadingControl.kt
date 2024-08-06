@@ -19,5 +19,18 @@ enum class DroneHeadingControl(val value: Int) {
     FOLLOW_INTEREST_POINT(4),
 
     /** 未知 */
-    UNKNOWN(-1),
+    UNKNOWN(-1);
+
+    companion object {
+        fun convertToKmlString(value: Int): String {
+            return when (value) {
+                1 -> "followWayline"
+                2 -> "manually"
+                3 -> "smoothTransition"
+                4 -> "towardPOI"
+                else -> "followWayline"
+            }
+        }
+
+    }
 }

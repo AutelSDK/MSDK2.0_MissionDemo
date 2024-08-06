@@ -5,10 +5,10 @@ import android.text.TextUtils
 import com.autel.drone.sdk.algor.AlgorithmManager
 import com.autel.drone.sdk.algor.bean.AutelCoordinate3D
 
-import com.autel.sdk.mission.wp.CameraActionJNI
-import com.autel.sdk.mission.wp.PathMission
-import com.autel.sdk.mission.wp.PathPoint
-import com.autel.sdk.mission.wp.PathResultMission
+import com.autel.sdk.mission.wp.v2.CameraActionJNI
+import com.autel.sdk.mission.wp.v2.PathMission
+import com.autel.sdk.mission.wp.v2.PathPoint
+import com.autel.sdk.mission.wp.v2.PathResultMission
 
 /**
  * 航线规划转换类，主要是对[AlgorithmManager]相关方法的封装，将ui数据转换为算法输入数据
@@ -29,8 +29,8 @@ class AirLineCreator {
             while (i in 0..100){
                 i++
                 var latLng = AutelLatLng()
-                latLng.latitude = 113.0003 * i+ 0.005
-                latLng.longitude = 24.0003 * i+ 0.005
+                latLng.latitude = 24.0003 + i * 0.005
+                latLng.longitude = 113.0003 + i * 0.005
                 latLng.altitude = 60.0
                 var waypoint = createWaypoint(latLng, waypointMissionModel)
                 waypointList.add(waypoint)

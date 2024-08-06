@@ -1,15 +1,18 @@
 package com.autel.drone.demo
 
 import android.os.Bundle
+import android.util.Log
 
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.autel.drone.sdk.libbase.common.dsp.FileConstants
 import com.autel.drone.sdk.libbase.error.IAutelCode
 import com.autel.drone.sdk.vmodelx.interfaces.IMissionManager
 import com.autel.drone.sdk.vmodelx.manager.DeviceManager
 import com.autel.drone.sdk.vmodelx.manager.keyvalue.callback.CommonCallbacks
 import com.autel.drone.sdk.vmodelx.manager.keyvalue.value.mission.bean.MissionWaypointGUIDBean
+import com.autel.drone.sdk.vmodelx.manager.keyvalue.value.mission.bean.MissionWaypointStatusReportNtfyBean
 import com.autel.mission.demo.R
 
 class MainActivity : AppCompatActivity() {
@@ -25,16 +28,24 @@ class MainActivity : AppCompatActivity() {
 
         //get MissionManager
         missionManager = DeviceManager.getDeviceManager().getFirstDroneDevice()?.getWayPointMissionManager()
-
+        //Mission execute status report
+        missionManager?.addWaypointMissionExecuteStateListener(object :CommonCallbacks.KeyListener<MissionWaypointStatusReportNtfyBean>{
+            override fun onValueChange(oldValue: MissionWaypointStatusReportNtfyBean?, newValue: MissionWaypointStatusReportNtfyBean) {
+                Log.d("Test", "$newValue")
+            }
+        })
 
         findViewById<Button>(R.id.upload).setOnClickListener {
             checkDroneConnect()
 
             // mock test data and get pathResultMission by algorithm
-            var pathResultMission = AirLineCreator.getWaypointMissionPath()
+            val pathResultMission = AirLineCreator.getWaypointMissionPath()
 
             // generate mission file object
-            var missionInfoJNI = AirLineWriter.writeMissionFile(pathResultMission!!)
+            val missionInfoJNI = AirLineWriter.writeMissionFile(pathResultMission!!)
+
+            // set for mission file save path
+            FileConstants.init(this)
 
             //save missionInfoJNI object to file, and upload to drone
             missionManager?.uploadMissionFile(missionInfoJNI, object: CommonCallbacks.CompletionCallbackWithProgressAndParam<Long> {
