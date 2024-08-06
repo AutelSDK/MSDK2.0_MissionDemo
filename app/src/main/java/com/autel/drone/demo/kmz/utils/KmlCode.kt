@@ -11,12 +11,5 @@ class KmlCode {
 
         const val SAVE_ERROR = 403  //save kmz error
 
-
-
-        const val isSupportMissionHover = false //AppInfoManager.isSupportMissionHover()
-
-        const val DRONE_FLIGHT_SPEED_LIMIT_MAX = 10 //速度最大值(m/s) //ModelXDroneConst.DRONE_FLIGHT_SPEED_LIMIT_MAX
-
-
     }
 }

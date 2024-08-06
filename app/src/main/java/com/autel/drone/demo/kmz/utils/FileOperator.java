@@ -104,12 +104,9 @@ public class FileOperator {
 
     /**
      * 获取 kml 或者 wpml 文件
-     *
      * @param dirPath  查找文件路径
      * @param FileType 文件类型
      * @return file
-     * <p>
-     * KML文件目录结构参考：https://confluence.autelrobotics.com/pages/viewpage.action?pageId=56920669
      */
     public static File getParseFile(String dirPath, String FileType) {
         KMLLog.Companion.d(TAG, "getParseFile=" + dirPath);

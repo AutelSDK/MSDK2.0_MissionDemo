@@ -25,8 +25,6 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * Java utils 实现的Zip工具
- *
- * @author fengyinhua
  */
 public class ZipUtils {
     private static final int BUFF_SIZE = 1024 * 1024; // 1M Byte
@@ -121,9 +119,6 @@ public class ZipUtils {
     /**
      * upZipFile:(解压缩文件)
      * 将zipFile文件解压到folderPath目录下)
-     *
-     * @return int DOM对象
-     * @throws
      */
     public static void upZipFile(File zipFile, String folderPath) throws IOException {
 
