@@ -45,6 +45,11 @@ android {
         encoding "UTF-8"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -60,13 +65,13 @@ configurations.all {
 dependencies {
     implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
     implementation fileTree("libs\\expose-release.aar")
-    implementation 'com.google.protobuf:protobuf-java:3.21.5'
+    implementation rootProject.ext.deps.external.protobuf_java
 
 
     implementation rootProject.ext.deps.external.android.core_ktx
     implementation rootProject.ext.deps.external.android.design
     implementation 'com.tencent:mmkv:1.2.13'
-    implementation 'com.github.Petterpx:FloatingX:1.0.4'
+   // implementation 'com.github.Petterpx:FloatingX:1.0.4'
     implementation rootProject.ext.deps.external.kotlin.coroutines
     implementation rootProject.ext.deps.external.kotlin.coroutinesandroid
 

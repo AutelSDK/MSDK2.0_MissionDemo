@@ -77,7 +77,7 @@ rootProject.ext {
                             'room_ktx'      : "androidx.room:room-ktx:2.4.2"
                     ],
 
-                    'protobuf_java' : "com.google.protobuf:protobuf-java:3.21.5",
+                    'protobuf_java' : "com.google.protobuf:protobuf-javalite:3.21.12",
             ],
     ]
 }
