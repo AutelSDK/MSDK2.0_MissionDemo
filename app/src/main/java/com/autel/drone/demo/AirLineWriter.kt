@@ -1,13 +1,8 @@
 package com.autel.drone.demo
 
 import android.util.Log
-import com.autel.internal.mission.v2.MissionInfoJNI
-import com.autel.internal.mission.v2.PoiPointJNI
-import com.autel.internal.mission.v2.WaypointInfoJNI
-import com.autel.sdk.mission.wp.v2.CameraActionJNI
-import com.autel.sdk.mission.wp.v2.MissionConfig
-import com.autel.sdk.mission.wp.v2.PathResultLine
-import com.autel.sdk.mission.wp.v2.PathResultMission
+import com.autel.internal.mission.*
+import com.autel.sdk.mission.wp.*
 import java.math.BigDecimal
 import java.util.*
 
